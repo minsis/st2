@@ -771,3 +771,32 @@ def load_meta_file(file_path):
 
     with open(file_path, "r") as f:
         return PARSER_FUNCS[file_ext](f)
+
+
+class ClientConfigResourceBranch(commands.Branch):
+    def __init__(
+            self,
+            resource,
+            description,
+            app,
+            subparsers,
+            commands=None,
+            parent_parser=None
+    ):
+        self.resource = resource
+        super().__init__(
+            self.resource.get_alias().lower(),
+            description,
+            app,
+            subparsers,
+            parent_parser=parent_parser,
+        )
+
+        self.subparsers = self.parser.add_subparsers(
+            help=(
+                    "List of commands for managing %s."
+                    % self.resource.get_plural_display_name().lower()
+            )
+        )
+
+        # self.commands["list"] = ResourceListCommand(self.resource, self.app, self.subparsers)

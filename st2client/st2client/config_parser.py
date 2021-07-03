@@ -35,12 +35,23 @@ __all__ = [
     "ST2_CONFIG_DIRECTORY",
     "ST2_CONFIG_PATH",
     "CONFIG_DEFAULT_VALUES",
+    "ST2_CONFIG_PREFIX",
+    "ST2_CONFIG_EXTENSION",
+    "ST2_DEFAULT_CONFIG_FILENAME"
 ]
 
 ST2_CONFIG_DIRECTORY = "~/.st2"
 ST2_CONFIG_DIRECTORY = os.path.abspath(os.path.expanduser(ST2_CONFIG_DIRECTORY))
 
 ST2_CONFIG_PATH = os.path.abspath(os.path.join(ST2_CONFIG_DIRECTORY, "config"))
+
+# If using Config Manager
+ST2_CONFIG_PREFIX = "st2config-"
+ST2_CONFIG_EXTENSION = ".ini"
+ST2_DEFAULT_CONFIG_FILENAME = "{prefix}default{extension}".format(
+    prefix=ST2_CONFIG_PREFIX,
+    extension=ST2_CONFIG_EXTENSION
+)
 
 CONFIG_FILE_OPTIONS = {
     "general": {

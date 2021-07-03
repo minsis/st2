@@ -38,7 +38,7 @@ from st2client.models.core import WorkflowManager
 from st2client.models.core import ServiceRegistryGroupsManager
 from st2client.models.core import ServiceRegistryMembersManager
 from st2client.models.core import add_auth_token_to_kwargs_from_env
-
+from st2client.models.config_manager import ClientConfigManager
 
 LOG = logging.getLogger(__name__)
 
@@ -264,6 +264,10 @@ class Client(object):
             self.endpoints["api"],
             cacert=self.cacert,
             debug=self.debug,
+        )
+
+        self.managers["ClientConfig"] = ClientConfigManager(
+            models.ClientConfigManager
         )
 
     @add_auth_token_to_kwargs_from_env

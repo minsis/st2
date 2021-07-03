@@ -31,3 +31,4 @@ from st2client.models.webhook import *  # noqa
 from st2client.models.timer import *  # noqa
 from st2client.models.service_registry import *  # noqa
 from st2client.models.rbac import *  # noqa
+from st2client.models.config_manager import * # noqa

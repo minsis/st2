@@ -60,6 +60,7 @@ from st2client.commands import rule_enforcement
 from st2client.commands import rbac
 from st2client.commands import workflow
 from st2client.commands import service_registry
+from st2client.commands import config_manager
 from st2client.config import set_config
 from st2client.exceptions.operations import OperationFailureException
 from st2client.utils.logging import LogLevelFilter, set_log_level_for_all_loggers
@@ -288,6 +289,11 @@ class Shell(BaseCLIApp):
         self.subparsers.required = True
         self.commands = {}
 
+        # Config Manager
+        self.commands["config"] = config_manager.ConfigMgrBranch(
+            "Manages config files for the st2 client", self, self.subparsers
+        )
+
         self.commands["run"] = action.ActionRunCommand(
             models.Action, self, self.subparsers, name="run", add_help=False
         )
@@ -416,6 +422,8 @@ class Shell(BaseCLIApp):
         self.commands["role-assignment"] = rbac.RoleAssignmentBranch(
             "RBAC role assignments.", self, self.subparsers
         )
+
+
 
     def run(self, argv):
         debug = False
